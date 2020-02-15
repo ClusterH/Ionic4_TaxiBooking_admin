@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Ride History
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="rides">
+  <ion-card *ngFor="let ride of rides" (click)="showInfo(ride)">
+    <div ion-fixed class="map">
+      <agm-map [latitude]="lat" [longitude]="lng" gestureHandling="cooperative">
+        <agm-direction [origin]="ride.origin" [destination]="ride.destination">
+        </agm-direction>
+      </agm-map>
+    </div>
+
+    <ion-card-content class="content">
+      <span *ngIf="ride && ride.date">{{ ride.date.toDate().toUTCString() }}</span>
+      <span *ngIf="!ride || !ride.date">Date not available</span>
+      <span>$ {{ ride.fare }}</span></ion-card-content>
+  </ion-card>
+
+  <div *ngIf="!rides || !rides.length" class="emptyDiv">
+    There are no rides to show. Rides will show up here once a user completes a ride.
+  </div>
+
+</ion-content>

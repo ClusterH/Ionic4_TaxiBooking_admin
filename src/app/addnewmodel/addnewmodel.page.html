@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title text-center color="dark">Add new Model</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div padding-top>
+    <form [formGroup]="modelForm" (ngSubmit)="formSubmit()">
+      <ion-list lines="full">
+        <!-- <ion-item>
+          <ion-label position="floating">Brand</ion-label>
+          <ion-input formControlName="brand" type="text"></ion-input>
+        </ion-item> -->
+  
+        <ion-item>
+          <ion-label position="floating">Model</ion-label>
+          <ion-input formControlName="model" type="text">
+          </ion-input>
+        </ion-item>
+  
+        <ion-item>
+          <ion-label position="floating">Speed(/hrs)</ion-label>
+          <ion-input formControlName="speed" type="">
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Price(/km)</ion-label>
+          <ion-input formControlName="price" type="text"></ion-input>
+        </ion-item>
+  
+        <ion-item>
+          <ion-label position="floating">Member</ion-label>
+          <ion-input formControlName="member" type="text">
+          </ion-input>
+        </ion-item>
+       
+        <div class="modelImg_div" >
+          <ion-button class="uploadButton" (click)="openActionsheet()" color="secondary" shape="full" expand="block">Model Image Upload</ion-button>
+          <ion-img  [src]="modelImgPath" ></ion-img>
+        </div>
+      </ion-list>
+    <ion-row class="add_btn">
+      <ion-col>
+        <ion-button type="submit" color="primary" shape="full" expand="block">ADD MODEL</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+
+  </div>
+</ion-content>
+<!-- <ion-footer (click)="openpageTRansition()">
+  <div class="footer_center_item">
+    <div class="footer_center_item_background">
+      <h2 class="icon_avatar1" text-uppercase> ADD MODEL</h2>
+    </div>
+  </div>
+</ion-footer> -->

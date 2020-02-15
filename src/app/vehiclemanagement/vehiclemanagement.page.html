@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Vehicle Management
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div *ngIf="!(models | async)" class="emptyDiv">
+      There are no customers to list. Customers will show up here once they signup.
+    </div>
+    <!-- <ion-card *ngFor="let model of (models | async)" class="model_content">
+      <ion-card-header>
+        <ion-card-title>{{model.brand}} {{ model.model }}</ion-card-title>
+      </ion-card-header>
+  
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6">
+              <p>speed:&nbsp;{{model.speed}}km/h</p>
+              <p>price:&nbsp;{{model.price}}/km</p>
+              <p>member:&nbsp;{{model.member}}</p>
+            </ion-col>
+            <ion-col size="6">
+              <ion-img  [src]="model.img_path" class="model_Img"></ion-img>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card> -->
+
+    <div style="display: flex; flex-direction: column;">
+      <!-- <ion-list-header style="font-size: 20px; color: green; font-weight: bolder;">Buddy</ion-list-header>  -->
+      <ion-list lines="none">  
+        <ion-item *ngFor="let model of (models | async )" style="margin-bottom: 10px !important;">  
+          <ion-card style="display: flex; flex-direction: column; justify-content: space-between !important; width: 100% !important; padding-left: 20px !important; padding-right: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; margin: 2px !important;">
+              <ion-label style="font-size: 20px !important; color: black; font-weight: bold">{{ model.model }}</ion-label>
+              <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                <div style="display: flex; flex-direction: column;">
+                  <ion-label style="font-size: 14px; margin-top: 5px;">Speed: {{model.speed}}km/h</ion-label>
+                  <ion-label style="font-size: 14px; margin-top: 5px;">Price: {{model.price}}$/km</ion-label>
+                  <ion-label style="font-size: 14px; margin-top: 5px;">Seat: {{model.member}}</ion-label>  
+                  <div style="display: flex; flex-direction: row; align-content: center; margin-top: 10px;">
+                      <ion-icon name="checkmark" color="success"></ion-icon>
+                      <ion-label style="font-size: 12px; margin-left: 5px;" color="success">Edit</ion-label>  
+                      <ion-icon name="close" style="margin-left: 15px;" color="danger"></ion-icon>
+                      <ion-label style="font-size: 12px; margin-left: 5px;" color="danger">Delete</ion-label>  
+                  </div>
+                </div>
+                <img [src]="model.img_path" style="width: 120px !important; margin-left: 10%;">
+              </div>
+          </ion-card>
+        </ion-item>  
+      </ion-list>  
+    </div>
+</ion-content>
+
+<ion-footer>
+  <div class="footer_center_item">
+    <div class="footer_center_item_background" (click)="openpageTRansition()">
+      <ion-avatar class="avatar_class1">
+        <ion-icon name="add" expand="icon-only" class="icon_avatar1"></ion-icon>
+      </ion-avatar>
+    </div>
+  </div>
+</ion-footer>

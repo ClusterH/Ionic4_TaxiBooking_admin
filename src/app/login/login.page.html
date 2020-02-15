@@ -1,0 +1,37 @@
+<ion-content>
+  <div class="loginContent">
+    <div padding class="inner-content">
+      <ion-card no-margin margin-top class="loginCard">
+        <ion-card-header class="cardHeader">
+          <ion-card-title class="headerText">
+            <b>Taxi Admin App</b>
+          </ion-card-title>
+          <ion-card-subtitle>
+            Login with your credentials
+          </ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content no-padding padding-top class="cardContents">
+          <ion-list>
+            <ion-item lines="none">
+              <ion-input class="placeholdertext inputField" type="text" placeholder="name@example.com"
+                [(ngModel)]="email" padding-start clearInput></ion-input>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-input class="placeholdertext inputField" type="password" placeholder="Password"
+                [(ngModel)]="password" padding-start clearInput></ion-input>
+            </ion-item>
+            <div padding-vertical padding-horizontal>
+              <ion-button color="dark" expand="block" [disabled]="disabled" class="btnSubmit" (click)="login()">Next
+              </ion-button>
+            </div>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+      <ion-text class="instruction" padding size="small">You can connect your own authentication method here, or remove
+        this
+        page as you wish.
+      </ion-text>
+    </div>
+  </div>
+</ion-content>

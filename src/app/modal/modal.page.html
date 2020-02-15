@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="end" (click)="goBack()">
+      <ion-icon slot="icon-only" name="close"></ion-icon>
+    </ion-buttons>
+    <ion-title>
+      Details
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content no-padding>
+  <ion-card>
+    <div ion-fixed class="map">
+      <agm-map [latitude]="lat" [longitude]="lng">
+        <agm-direction *ngIf="rideInfo && rideInfo.origin && rideInfo.destination" [origin]="rideInfo.origin"
+          [destination]="rideInfo.destination"></agm-direction>
+      </agm-map>
+    </div>
+
+    <ion-card-content>
+      <div class="contentHead">
+        <span *ngIf="rideInfo && rideInfo.date">{{ rideInfo.date.toDate().toUTCString() }}</span>
+        <span *ngIf="!rideInfo || !rideInfo.date">Date not available</span>
+        <span>$ {{ rideInfo.fare }}</span>
+      </div>
+      <div class="contentBody">
+        <ion-list>
+          <ion-item>
+            <ion-label class="unwrapped"><strong>Origin:</strong> {{ originAddr }}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label class="unwrapped"><strong>Destination:</strong> {{ destinationAddr }}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label><strong>Driver:</strong> {{ driver }}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label><strong>Customer:</strong> {{ customer }}</ion-label>
+          </ion-item>
+        </ion-list>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <ion-text class="instruction" padding size="small">The quota limit for Geocoding / Maps API may exceed with
+    multiple users using the demo. Please use your own key.
+    In case of API usage exceeding, the above map will show default marker points.
+  </ion-text>
+</ion-content>

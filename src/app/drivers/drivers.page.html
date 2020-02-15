@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Drivers
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content padding>
+  <div *ngIf="drivers === undefined" text-center class="loaderSection">
+    <ion-spinner name="lines"></ion-spinner>
+  </div>
+  <div *ngIf="!drivers || !drivers.length" class="emptyDiv">
+    There are no drivers to list. Drivers will show up here once they signup.
+  </div>
+  <div *ngIf="drivers">
+    <ion-segment color="dark" *ngIf="drivers && drivers.length" (ionChange)="segmentChanged($event)">
+      <ion-segment-button value="true" checked>
+        <ion-label>Approved</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="false">
+        <ion-label>Not Approved</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+    <ion-card *ngFor="let driver of filterDrivers">
+      <ion-card-header>
+        <ion-row>
+          <ion-col size="5">
+            <ion-avatar class="profileImage relative">
+              <img [src]="driver.profileImg" />
+              <!-- <ion-icon name="camera" color="primary" class="iconFontSize cameraIcon"></ion-icon> -->
+            </ion-avatar>
+          </ion-col>
+          <ion-col size="7">
+            <p>Name: <strong>{{ driver.name }}</strong></p>
+            <p>License No: <strong>{{ driver.license_info }}</strong></p>
+            <p>Email: <strong>{{ driver.email }}</strong></p>
+          </ion-col>
+        </ion-row>
+        <div *ngIf="driver.driver_license_approve">
+          <img [src]="driver.driver_license_img" />
+          <ion-label>
+            <p>Driver License</p>
+          </ion-label>
+        </div>
+        <div *ngIf="!driver.driver_license_approve">
+          <ion-label>
+            <p>No approved Driver License!</p>
+          </ion-label>
+        </div>  
+      </ion-card-header>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col size="10">
+            <!-- Driver License: {{driver.driver_license_approve}}&nbsp;<span>(show image)</span> <br /> -->
+            Available: {{ driver.available }} <br />
+            Riding: {{ driver.requestRide }}
+          </ion-col>
+          <ion-col size="2">
+            <ion-toggle [checked]="driver.approved" (ionChange)="toggleChanged($event, driver.id)"></ion-toggle>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </div>
+</ion-content>
